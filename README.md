@@ -107,4 +107,7 @@ The project is designed for studio workflow. The API enables:
 
 ---
 
-*Author's note: This tool bridges linguistics and technology. If you need support integrating with Unity or Unreal Engine — let me know!*
+**Author:** Maxsoft — [biuro@maxsoft.pl](mailto:biuro@maxsoft.pl)  
+**License:** [MIT](LICENSE)
+
+*This tool bridges linguistics and technology. If you need support integrating with Unity or Unreal Engine — let me know!*

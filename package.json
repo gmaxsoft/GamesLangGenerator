@@ -1,6 +1,9 @@
 {
   "name": "conlang-studio-ai",
+  "version": "1.0.0",
   "private": true,
+  "author": "Maxsoft <biuro@maxsoft.pl>",
+  "license": "MIT",
   "workspaces": ["server", "client"],
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
