@@ -72,6 +72,14 @@ npm run build
 
 Builds both server (`server/dist`) and client (`client/dist`). CI runs this on Node 20.x and 22.x (see `.github/workflows/ci.yml`).
 
+### Tests
+
+```bash
+npm run test
+```
+
+Runs server unit tests (Vitest): `fontService`, `languageService` (mocked OpenAI), and `POST /api/v1/generate` route validation. Use `npm run test:watch` for watch mode.
+
 ## 📡 API Documentation
 
 ### `POST /api/v1/generate`
