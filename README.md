@@ -16,7 +16,7 @@ Thanks to AI integration, the system not only generates word lists but also crea
 | Layer       | Technology           | Description                              |
 | ----------- | -------------------- | ---------------------------------------- |
 | Backend     | Node.js + TypeScript | Stable and scalable API                  |
-| Frontend    | React + Tailwind CSS | Fast and responsive admin panel          |
+| Frontend    | React + Vite + Tailwind CSS | Fast and responsive admin panel   |
 | Linguistics | OpenAI / Anthropic API | AI-powered language rule generation   |
 | Typography  | opentype.js          | Binary font file generation              |
 | API         | Express.js           | REST communication standard              |
@@ -25,39 +25,52 @@ Thanks to AI integration, the system not only generates word lists but also crea
 
 ### Requirements
 
-- Node.js v18+
-- OpenAI or Anthropic API key
+- Node.js v20+ (CI uses 20.x and 22.x)
+- OpenAI API key
 
 ### Installation
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/twoj-user/conlang-studio-ai.git
-cd conlang-studio-ai
+git clone https://github.com/gmaxsoft/GamesLangGenerator.git
+cd GamesLangGenerator
 ```
 
-2. Environment setup — create a `.env` file in the project root:
+2. Environment setup — copy `.env.example` to `.env` and set your API key:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env`:
 
 ```
 PORT=3000
 OPENAI_API_KEY=your_api_key
 ```
 
-3. Install and run (Backend):
+3. Install dependencies (monorepo: server + client):
 
 ```bash
 npm install
-npm run dev
 ```
 
-4. Run the Frontend:
+4. Run both server and frontend:
 
 ```bash
-cd frontend
-npm install
 npm run dev
 ```
+
+Or run separately: `npm run dev:server` (backend on port 3000), `npm run dev:client` (Vite on port 5173, proxies `/api` to backend).
+
+### Build
+
+```bash
+npm run build
+```
+
+Builds both server (`server/dist`) and client (`client/dist`). CI runs this on Node 20.x and 22.x (see `.github/workflows/ci.yml`).
 
 ## 📡 API Documentation
 
@@ -76,7 +89,7 @@ Main endpoint for creating a new language.
 }
 ```
 
-**Response:** `200 OK` — returns a JSON object with grammar, dictionary, and a link to download the .ttf font.
+**Response:** `200 OK` — returns a JSON object with `grammar`, `phonetics`, `dictionary`, `fontBase64` (TTF as Base64), and `languageName`. The frontend decodes `fontBase64` to offer a font download and live preview.
 
 ## 🧠 System Prompt Configuration
 
